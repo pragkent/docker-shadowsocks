@@ -1,0 +1,16 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t pragkent/shadowsocks .
+
+script:
+  - docker run -e "PASSWORD=SECRET" -d $DOCKER_USERNAME/shadowsocks
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+    docker push $DOCKER_USERNAME/shadowsocks;
+    fi

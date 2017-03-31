@@ -1,0 +1,6 @@
+{
+  "server_port": 7777,
+  "method": "aes-128-cfb",
+  "password": "_PASSWORD_",
+  "timeout": 60
+}
